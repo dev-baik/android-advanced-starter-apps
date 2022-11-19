@@ -1,17 +1,12 @@
 package com.example.fragmentexample
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Button
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
-import com.example.fragmentexample.MainActivity.Companion.STATE_FRAGMENT
-import com.example.fragmentexample.databinding.ActivityMainBinding
+import androidx.appcompat.app.AppCompatActivity
+import com.example.fragmentexample.databinding.ActivitySecondBinding
 
-class MainActivity : AppCompatActivity() {
-    private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+class SecondActivity : AppCompatActivity() {
+    private val binding by lazy { ActivitySecondBinding.inflate(layoutInflater) }
     private var isFragmentDisplayed = false
 
     companion object {
@@ -30,15 +25,15 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.openButton.setOnClickListener {
-            if (!isFragmentDisplayed) {
+            if(!isFragmentDisplayed) {
                 displayFragment()
             } else {
                 closeFragment()
             }
         }
 
-        binding.nextButton.setOnClickListener {
-            val intent = Intent(applicationContext, SecondActivity::class.java)
+        binding.previousButton.setOnClickListener {
+            val intent = Intent(applicationContext, MainActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -50,21 +45,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun displayFragment() {
-        val fragmentManager: FragmentManager = supportFragmentManager
-        val transaction: FragmentTransaction = fragmentManager.beginTransaction()
-        transaction.add(R.id.fragment_container, SimpleFragment())
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.add(R.id.fragment_container, SecondFragment())
             .addToBackStack(null)
             .commit()
+
         binding.openButton.setText(R.string.close)
         isFragmentDisplayed = true
     }
 
     private fun closeFragment() {
         val fragmentManager = supportFragmentManager
-        val simpleFragment = fragmentManager.findFragmentById(R.id.fragment_container)
-        if (simpleFragment != null) {
+        val secondFragment = fragmentManager.findFragmentById(R.id.fragment_container)
+        if(secondFragment != null) {
             val fragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.remove(simpleFragment).commit()
+            fragmentTransaction.remove(secondFragment).commit()
         }
         binding.openButton.setText(R.string.open)
         isFragmentDisplayed = false
