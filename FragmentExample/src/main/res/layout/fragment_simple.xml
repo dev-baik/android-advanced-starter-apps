@@ -29,6 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="8dp"
+            android:minHeight="0dp"
             android:text="@string/yes" />
 
         <RadioButton
@@ -36,6 +37,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="8dp"
+            android:minHeight="0dp"
             android:text="@string/no" />
     </RadioGroup>
+
+    <TextView
+        android:id="@+id/like_song"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:text="LIKE THE SONG?"
+        app:layout_constraintTop_toBottomOf="@id/fragment_header"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <RatingBar
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:isIndicator="false"
+        app:layout_constraintTop_toTopOf="@id/like_song"
+        app:layout_constraintBottom_toBottomOf="@id/like_song"
+        app:layout_constraintLeft_toRightOf="@id/like_song"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

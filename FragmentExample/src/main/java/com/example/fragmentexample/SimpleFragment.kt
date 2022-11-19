@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.fragmentexample.databinding.FragmentSimpleBinding
 
@@ -29,6 +30,10 @@ class SimpleFragment : Fragment() {
                 NO -> binding.fragmentHeader.setText(R.string.no_message)
                 else -> ""
             }
+        }
+
+        binding.ratingBar.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
+            Toast.makeText(context, "My Rating: $rating", Toast.LENGTH_SHORT).show()
         }
     }
 }
